@@ -46,7 +46,6 @@ class InteractivePlotter:
     def gather_data(self, state, live_cap, live_tissue, time, diffusion_percent):
         pass
 
-    # Note make interact take in state and return state elsewhere as well
     def interact(self, state, live_cap, live_tissue):
         self.state = state
         self.live_cap = live_cap
@@ -77,14 +76,14 @@ class InteractivePlotter:
 class ConservationPlotter:
     def __init__(self):
         self.average = [] # defines list that tracks average tissue concentration
-        self.time = []  # defines list that tracks time
+        self.time = []    # defines list that tracks time
 
     def init(self):
         pass
 
     def gather_data(self, state, live_cap, live_tissue, time, diffusion_percent):
         self.average.append(np.sum(state[live_tissue])/np.sum(live_tissue)) # adds current tissue average to average tissue concentration list
-        self.time.append(time)                                            # adds current time to time list
+        self.time.append(time)                                              # adds current time to time list
 
     def plot(self):
         # plots average tissue concentration vs time
@@ -108,7 +107,7 @@ class CapConcPlotter:
 
     def gather_data(self, state, live_cap, live_tissue, time, diffusion_percent):
         self.cap_conc.append(diffusion_percent[self.r, self.c]) # adds current tissue average to average tissue concentration list
-        self.time.append(time)                                            # adds current time to time list
+        self.time.append(time)                                  # adds current time to time list
 
     def plot(self):
         # plots average tissue concentration vs time

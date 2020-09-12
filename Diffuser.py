@@ -29,7 +29,7 @@ class DiffuserFourWay:
         diffusion_percent = state/old_state                                                          # calculates percent change in state due to diffusion
         state[self.live_tissue] -= self.m*old_state[self.live_tissue]                                # consumption is applied to live tissue
 
-        live_caps = state > .5 * self.cap_initial                  # capillaries are alive above 50% saturation @todo: note this line
+        live_caps = state > .5 * self.cap_initial                  # capillaries are alive above 50% saturation, change capillary threshold here
         # print(np.mean((state/self.cap_initial)[self.live_caps]))   # prints percent saturation
         self.live_caps = np.logical_and(self.live_caps, live_caps) # dead capillaries stay dead
         state[self.live_caps] = self.cap_initial                   # live capillaries are refilled
@@ -65,7 +65,7 @@ class DiffuserEightWay:
         state[self.live_tissue] -= self.m * old_state[self.live_tissue]                              # consumption is applied to live tissue
 
 
-        live_caps = state > .5 * self.cap_initial                  # capillaries are alive above 50% saturation @todo: note this line
+        live_caps = state > .5 * self.cap_initial                  # capillaries are alive above 50% saturation, change capillary threshold here
         # print(np.mean((state / self.cap_initial)[self.live_caps])) # prints percent saturation
         self.live_caps = np.logical_and(self.live_caps, live_caps) # dead capillaries stay dead
         state[self.live_caps] = self.cap_initial                   # live capillaries are refilled

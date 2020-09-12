@@ -21,15 +21,15 @@ class Initializer2x2:
         plt.close(self.fig)
         plt.ioff()
 
-        self.caps = self.initial_state == 1     # cap cells are where the cells are not tissue
-        cap_indicies = np.argwhere(self.caps == 1)
-        killed_indicies = cap_indicies[np.random.choice(len(cap_indicies), int(fraction_dead*len(cap_indicies)), replace = False)]
-        self.caps[killed_indicies[:,0], killed_indicies[:,1]] = 0
-        self.cap_value = cap                    # stores capillary concentration
-        self.tissue_value = tissue              # stores tissue concentration
-        self.initial_state *= cap               # sets capillary concentrations
-        tissue_conc = self.tissue * tissue      # sets tissue concentrations
-        self.initial_state += tissue_conc       # combines capillaries and tissue into a single array
+        self.caps = self.initial_state == 1                                                                                     # cap cells are where the cells are not tissue
+        cap_indices = np.argwhere(self.caps == 1)                                                                               # gets capillary location indices
+        killed_indicies = cap_indices[np.random.choice(len(cap_indices), int(fraction_dead*len(cap_indices)), replace = False)] # selects a random subset of capillaries
+        self.caps[killed_indicies[:,0], killed_indicies[:,1]] = 0                                                               # obstructs a random subset of capillaries
+        self.cap_value = cap                                                                                                    # stores capillary concentration
+        self.tissue_value = tissue                                                                                              # stores tissue concentration
+        self.initial_state *= cap                                                                                               # sets capillary concentrations
+        tissue_conc = self.tissue * tissue                                                                                      # sets tissue concentrations
+        self.initial_state += tissue_conc                                                                                       # combines capillaries and tissue into a single array
 
     def initialize(self):
         # initializes with the initial state, capillaries, and tissue
@@ -65,17 +65,15 @@ class Initializer3x3:
         plt.close(self.fig)
         plt.ioff()
 
-        self.caps = self.initial_state == 1  # cap cells are where the cells are not tissue
-        cap_indicies = np.argwhere(self.caps == 1)
-        # print(cap_indicies)
-        killed_indicies = cap_indicies[np.random.choice(len(cap_indicies), int(fraction_dead * len(cap_indicies)), replace=False)]
-        # print(killed_indicies)
-        self.caps[killed_indicies[:,0], killed_indicies[:,1]] = 0
-        self.cap_value = cap  # stores capillary concentration
-        self.tissue_value = tissue  # stores tissue concentration
-        self.initial_state *= cap  # sets capillary concentrations
-        tissue_conc = self.tissue * tissue  # sets tissue concentrations
-        self.initial_state += tissue_conc  # combines capillaries and tissue into a single array
+        self.caps = self.initial_state == 1                                                                                        # cap cells are where the cells are not tissue
+        cap_indicies = np.argwhere(self.caps == 1)                                                                                 # gets capillary location indices
+        killed_indicies = cap_indicies[np.random.choice(len(cap_indicies), int(fraction_dead * len(cap_indicies)), replace=False)] # selects a random subset of capillaries
+        self.caps[killed_indicies[:,0], killed_indicies[:,1]] = 0                                                                  # obstructs a random subset of capillaries
+        self.cap_value = cap                                                                                                       # stores capillary concentration
+        self.tissue_value = tissue                                                                                                 # stores tissue concentration
+        self.initial_state *= cap                                                                                                  # sets capillary concentrations
+        tissue_conc = self.tissue * tissue                                                                                         # sets tissue concentrations
+        self.initial_state += tissue_conc                                                                                          # combines capillaries and tissue into a single array
 
     def initialize(self):
         # initializes with the initial state, capillaries, and tissue
